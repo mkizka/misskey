@@ -26,7 +26,7 @@ const path = process.env.NODE_ENV === 'test'
 function loadConfigFromEnv() {
 	const env = {} as any;
 	for (const [envKey, envValue] of Object.entries(process.env)) {
-		const keys = envKey.split(".");
+		const keys = envKey.split('_').map(k => k.toLowerCase());
 		if (keys[0] !== 'misskey') continue;
 		let target = env;
 		keys.forEach((key, i) => {
@@ -87,6 +87,6 @@ function tryCreateUrl(url: string) {
 	try {
 		return new URL(url);
 	} catch (e) {
-		throw `url="${url}" is not a valid URL.`;
+		throw new Error(`url="${url}" is not a valid URL.`);
 	}
 }
