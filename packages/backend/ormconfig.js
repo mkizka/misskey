@@ -2,6 +2,7 @@ import { DataSource } from 'typeorm';
 import config from './built/config/index.js';
 import { entities } from './built/db/postgre.js';
 
+console.log(config);
 export default new DataSource({
 	type: 'postgres',
 	host: config.db.host,
